@@ -12,7 +12,7 @@ namespace CarRental.Persistance.EF.SeedData
     {
         public static List<Car> Get()
         {
-            var carAddressId = CarAddressSeed.Get();
+            var carAddressId = CarAddressesSeed.Get();
 
             List<Car> cars = new List<Car>();
 
@@ -23,8 +23,9 @@ namespace CarRental.Persistance.EF.SeedData
                 Model = "406 Coupe",
                 RegNumber = "RLE20095",
                 FuelConsumption = 11.5m,
-                CarAddressId = CarAddressSeed.Rzeszow
+                CarAddressId = CarAddressesSeed.Rzeszow
             };
+            cars.Add(car1);
 
             var car2 = new Car()
             {
@@ -33,8 +34,9 @@ namespace CarRental.Persistance.EF.SeedData
                 Model = "760Li",
                 RegNumber = "RZ30571",
                 FuelConsumption = 14.2m,
-                CarAddressId = CarAddressSeed.Krakow
+                CarAddressId = CarAddressesSeed.Krakow
             };
+            cars.Add(car2);
 
             var car3 = new Car()
             {
@@ -43,8 +45,9 @@ namespace CarRental.Persistance.EF.SeedData
                 Model = "R8",
                 RegNumber = "KR87937",
                 FuelConsumption = 12.8m,
-                CarAddressId = CarAddressSeed.Wroclaw
+                CarAddressId = CarAddressesSeed.Wroclaw
             };
+            cars.Add(car3);
 
             return cars;
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Persistance.EF.SeedData
 {
-    public class CarAddressSeed
+    public class CarAddressesSeed
     {
         public static int Rzeszow = 1;
         public static int Krakow = 2;
@@ -23,6 +23,7 @@ namespace CarRental.Persistance.EF.SeedData
                 City = "Rzeszów",
                 Street = "Architektów 4"
             };
+            carAddresses.Add(address1);
 
             var address2 = new CarAddress()
             {
@@ -30,6 +31,7 @@ namespace CarRental.Persistance.EF.SeedData
                 City = "Kraków",
                 Street = "Rostafińskiego 9"
             };
+            carAddresses.Add(address2);
 
             var address3 = new CarAddress()
             {
@@ -37,6 +39,7 @@ namespace CarRental.Persistance.EF.SeedData
                 City = "Wrocław",
                 Street = "Witelona 25"
             };
+            carAddresses.Add(address3);
 
             return carAddresses;
         }

@@ -12,17 +12,23 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{050708D0-62C2-411D-B87C-3D9133EF6FDA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Application", "CarRental.Application\CarRental.Application.csproj", "{312EE6C9-B3EC-462B-A0B6-66F070A812DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{050708D0-62C2-411D-B87C-3D9133EF6FDA} = {050708D0-62C2-411D-B87C-3D9133EF6FDA}
+		{61F849BD-59D0-44D4-B81B-C6B6429088A3} = {61F849BD-59D0-44D4-B81B-C6B6429088A3}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Common.Abstractions", "CarRental.Common.Abstractions\CarRental.Common.Abstractions.csproj", "{61F849BD-59D0-44D4-B81B-C6B6429088A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Persistance.EF", "CarRental.Persistance.EF\CarRental.Persistance.EF.csproj", "{4BF32927-7E7A-4B38-8252-5F121C9FADE4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{050708D0-62C2-411D-B87C-3D9133EF6FDA} = {050708D0-62C2-411D-B87C-3D9133EF6FDA}
+		{312EE6C9-B3EC-462B-A0B6-66F070A812DB} = {312EE6C9-B3EC-462B-A0B6-66F070A812DB}
+		{61F849BD-59D0-44D4-B81B-C6B6429088A3} = {61F849BD-59D0-44D4-B81B-C6B6429088A3}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{1D1AE051-5BFC-4905-9E9E-FAD306CA06F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Api", "CarRental.Api\CarRental.Api.csproj", "{05F4A32E-09F8-44AD-BC4F-F33CA822EF78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Api", "CarRental.Api\CarRental.Api.csproj", "{05F4A32E-09F8-44AD-BC4F-F33CA822EF78}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4BF32927-7E7A-4B38-8252-5F121C9FADE4} = {4BF32927-7E7A-4B38-8252-5F121C9FADE4}
 	EndProjectSection

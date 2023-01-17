@@ -25,4 +25,9 @@
     <Folder Include="Responses\" />
   </ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\CarRental.Domain\CarRental.Domain.csproj" />
+		<ProjectReference Include="..\CarRental.Common.Abstractions\CarRental.Common.Abstractions.csproj" />
+	</ItemGroup>
+
 </Project>

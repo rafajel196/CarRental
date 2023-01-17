@@ -32,7 +32,7 @@ namespace CarRental.Persistance.EF
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarRentalContext).Assembly);
 
-            foreach(var item in CarAddressSeed.Get())
+            foreach(var item in CarAddressesSeed.Get())
             {
                 modelBuilder.Entity<CarAddress>().HasData(item);
             }

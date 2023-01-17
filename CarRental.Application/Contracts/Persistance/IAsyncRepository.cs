@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Contracts.Persistance
 {
-    internal class IAsyncRepository<T> where T : class
+    public class IAsyncRepository<T> where T : class
     {
         //Task<T> GetByIdAsync(int id);
         //Task<IReadOnlyList<T>> GetAllAsync();

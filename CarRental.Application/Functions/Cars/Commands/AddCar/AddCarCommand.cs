@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.Cars.Commands.AddCar
 {
-    internal class AddCarCommand
+    public class AddCarCommand
     {
     }
 }

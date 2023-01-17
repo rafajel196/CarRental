@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Mapper
 {
-    internal class MappingProfile
+    public class MappingProfile
     {
     }
 }

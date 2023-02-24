@@ -1,4 +1,4 @@
-﻿//using CarRental.Domain.Entities;
+﻿using CarRental.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Contracts.Persistance
 {
-    public class IAsyncRepository<T> where T : class
+    public interface IAsyncRepository<T> where T : class
     {
-        //Task<T> GetByIdAsync(int id);
-        //Task<IReadOnlyList<T>> GetAllAsync();
-        //Task<T> AddAsync(T entity);
-        //Task UpdateAsync(T entity);
-        //Task DeleteAsync(T entity);
+        Task<T> GetByIdAsync(int id);
+        Task<IReadOnlyList<T>> GetAllAsync();
+        Task<T> AddAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
     }
 }

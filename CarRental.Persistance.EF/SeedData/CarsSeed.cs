@@ -49,6 +49,39 @@ namespace CarRental.Persistance.EF.SeedData
             };
             cars.Add(car3);
 
+            var car4 = new Car()
+            {
+                Id = 4,
+                Mark = "BMW",
+                Model = "E46",
+                RegNumber = "RLE30098",
+                FuelConsumption = 8.3m,
+                CarAddressId = CarAddressesSeed.Rzeszow
+            };
+            cars.Add(car4);
+
+            var car5 = new Car()
+            {
+                Id = 5,
+                Mark = "Peugeot",
+                Model = "406 Coupe",
+                RegNumber = "RLE21372",
+                FuelConsumption = 11.5m,
+                CarAddressId = CarAddressesSeed.Rzeszow
+            };
+            cars.Add(car5);
+
+            var car6 = new Car()
+            {
+                Id = 6,
+                Mark = "Audi",
+                Model = "TT",
+                RegNumber = "KR91392",
+                FuelConsumption = 12.3m,
+                CarAddressId = CarAddressesSeed.Krakow
+            };
+            cars.Add(car6);
+
             return cars;
         }
     }

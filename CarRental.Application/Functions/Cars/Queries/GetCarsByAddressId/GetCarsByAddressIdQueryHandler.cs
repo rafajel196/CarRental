@@ -8,29 +8,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.Functions.Cars.Queries.GetAllCars
+namespace CarRental.Application.Functions.Cars.Queries.GetCarsByAddressId
 {
-    public class GetAllCarsQueryHandler : IRequestHandler<GetAllCarsQuery, List<CarDto>>
+    public class GetCarsByAddressIdQueryHandler : IRequestHandler<GetCarsByAddressIdQuery, List<CarDto>>
     {
         private readonly ICarRepository _carRepository;
         private readonly IMapper _mapper;
 
-        public GetAllCarsQueryHandler(ICarRepository carRepository, IMapper mapper)
+        public GetCarsByAddressIdQueryHandler(ICarRepository carRepository, IMapper mapper)
         {
             _carRepository = carRepository;
             _mapper = mapper;
         }
 
-        public async Task<List<CarDto>> Handle(GetAllCarsQuery request, CancellationToken cancellationToken)
+        public async Task<List<CarDto>> Handle(GetCarsByAddressIdQuery request, CancellationToken cancellationToken)
         {
             var cars = await _carRepository.GetAllAsync();
-
             if (cars is null)
             {
                 throw new NotImplementedException();
             }
 
-            var result = _mapper.Map<List<CarDto>>(cars);
+            var carsById = cars.Where(x => x.CarAddressId == request.Id).ToList();
+
+            var result = _mapper.Map<List<CarDto>>(carsById);
 
             return result;
         }

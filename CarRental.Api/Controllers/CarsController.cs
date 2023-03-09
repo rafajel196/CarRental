@@ -7,6 +7,7 @@ using MediatR;
 using CarRental.Application.Functions.Cars.Queries.GetCarDto;
 using CarRental.Application.Functions.Cars.Queries.GetAllCars;
 using CarRental.Application.Functions.Cars.Queries.GetCarById;
+using CarRental.Application.Functions.Cars.Queries.GetCarsByAddressId;
 
 namespace CarRental.Api.Controllers
 {
@@ -24,17 +25,25 @@ namespace CarRental.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<CarDto>>> GetAllCars()
         {
-            var cars = await _mediator.Send(new GetAllCarsQuery());
+            var result = await _mediator.Send(new GetAllCarsQuery());
 
-            return Ok(cars);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<CarDto>> GetCarById([FromRoute] int id)
         {
-            var car = await _mediator.Send(new GetCarByIdQuery() { Id = id });
+            var result = await _mediator.Send(new GetCarByIdQuery() { Id = id });
 
-            return Ok(car);
+            return Ok(result);
+        }
+
+        [HttpGet("getByAddressId/{id}")]
+        public async Task<ActionResult<List<CarDto>>> GetCarsByAddressId([FromRoute] int id)
+        {
+            var result = await _mediator.Send(new GetCarsByAddressIdQuery() { Id = id });
+
+            return Ok(result);
         }
     }
 }

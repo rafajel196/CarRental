@@ -22,25 +22,29 @@ namespace CarRental.Api
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-
+            builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
+            builder.Services.AddScoped<ICarRepository, CarRepository>();
+
 
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI(options =>
-                {
-                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-                    options.RoutePrefix = string.Empty;
-                });
+                app.UseSwaggerUI();
             }
 
+            app.UseHttpsRedirection();
+            app.UseRouting();
+            //app.UseAuthorization();
+            //app.UseAuthentication();
+
+            //app.UseCors("AllowAlls");
+
+            app.MapControllers();
 
             app.MapGet("data", async (CarRentalContext db) =>
             {

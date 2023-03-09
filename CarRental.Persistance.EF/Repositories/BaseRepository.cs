@@ -33,7 +33,6 @@ namespace CarRental.Persistance.EF.Repositories
             await _dbContext.SaveChangesAsync();
             return entity;
         }
-
         public async Task UpdateAsync(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
@@ -44,7 +43,6 @@ namespace CarRental.Persistance.EF.Repositories
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
-
         }
     }
 }

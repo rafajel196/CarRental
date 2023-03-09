@@ -11,8 +11,9 @@
     "CarRental.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7065;http://localhost:5156",
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7065",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

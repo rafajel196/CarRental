@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CarRental.Application.Functions.Cars.Commands.AddCar;
 using CarRental.Application.Functions.Cars.Queries.GetCarDto;
 using CarRental.Domain.Entities;
 using System;
@@ -11,9 +12,10 @@ namespace CarRental.Application.Mapper
 {
     public class MappingProfile : Profile
     {
-        public MappingProfile() 
+        public MappingProfile()
         {
             CreateMap<Car, CarDto>().ReverseMap();
+            CreateMap<AddCarCommand, Car>().ReverseMap();
         }
     }
 }

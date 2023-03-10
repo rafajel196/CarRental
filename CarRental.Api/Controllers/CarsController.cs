@@ -8,6 +8,7 @@ using CarRental.Application.Functions.Cars.Queries.GetCarDto;
 using CarRental.Application.Functions.Cars.Queries.GetAllCars;
 using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using CarRental.Application.Functions.Cars.Queries.GetCarsByAddressId;
+using CarRental.Application.Functions.Cars.Commands.AddCar;
 
 namespace CarRental.Api.Controllers
 {
@@ -44,6 +45,14 @@ namespace CarRental.Api.Controllers
             var result = await _mediator.Send(new GetCarsByAddressIdQuery() { Id = id });
 
             return Ok(result);
+        }
+
+        [HttpPost("add")]
+        public async Task<ActionResult<int>> AddCar([FromQuery] AddCarCommand addCar)
+        {
+            var newCar = _mediator.Send(addCar);
+
+            return Created($"id = {newCar.Id}", null);
         }
     }
 }

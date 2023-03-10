@@ -30,6 +30,10 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsByAddressId
             }
 
             var carsById = cars.Where(x => x.CarAddressId == request.Id).ToList();
+            if (carsById is null)
+            {
+                throw new NotImplementedException();
+            }
 
             var result = _mapper.Map<List<CarDto>>(carsById);
 

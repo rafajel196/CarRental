@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.Cars.Commands.AddCar
 {
-    public class AddCarCommandHandler : IRequestHandler<AddCarCommand, Unit>
+    public class AddCarCommandHandler : IRequestHandler<AddCarCommand, int>
     {
         private readonly ICarRepository _carRepository;
         private readonly IMapper _mapper;
@@ -21,13 +21,13 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(AddCarCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(AddCarCommand request, CancellationToken cancellationToken)
         {
             var newCar = _mapper.Map<Car>(request);
 
             newCar = await _carRepository.AddAsync(newCar);
 
-            return Unit.Value;
+            return newCar.Id;
         }
     }
 }

@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Functions\Users\Commands\" />
     <Folder Include="Middleware\" />
     <Folder Include="Responses\" />
   </ItemGroup>

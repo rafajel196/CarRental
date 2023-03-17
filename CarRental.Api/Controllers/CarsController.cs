@@ -10,6 +10,7 @@ using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using CarRental.Application.Functions.Cars.Queries.GetCarsByAddressId;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
 using CarRental.Application.Functions.Cars.Commands.UpdateCar;
+using CarRental.Application.Functions.Cars.Commands.DeleteCar;
 
 namespace CarRental.Api.Controllers
 {
@@ -56,12 +57,22 @@ namespace CarRental.Api.Controllers
             return Created($"New car id = {newCar}", null);
         }
 
-        [HttpPut("update")]
-        public async Task<ActionResult<Unit>> UpdateCar([FromQuery] UpdateCarCommand updateCar)
+        [HttpPut("update/{id}")]
+        public async Task<ActionResult<Unit>> UpdateCar([FromQuery] UpdateCarCommand updateCar, [FromRoute] int id, CancellationToken cancellationToken)
         {
+            updateCar.Id = id;
+
             var car = await _mediator.Send(updateCar);
 
-            return Ok(car);
+            return Ok("Car updated");
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<ActionResult<int>> DeleteCarById([FromRoute] int id)
+        {
+            var car = await _mediator.Send(new DeleteCarCommand() { Id = id });
+
+            return Ok($"Deleted car id = {car}");
         }
     }
 }

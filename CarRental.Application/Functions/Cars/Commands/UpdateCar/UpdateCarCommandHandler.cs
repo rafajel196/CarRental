@@ -29,7 +29,15 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
             {
                 throw new NotImplementedException();
             }
+
+            car.Mark = updateCar.Mark;
+            car.Model = updateCar.Model;
+            car.RegNumber = updateCar.RegNumber;
+            car.FuelConsumption = updateCar.FuelConsumption;
+            car.CarAddressId = updateCar.CarAddressId;
+
             await _carRepository.UpdateAsync(car);
+
             return Unit.Value;
         }
     }

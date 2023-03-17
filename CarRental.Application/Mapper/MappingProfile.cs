@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
 using CarRental.Application.Functions.Cars.Queries.GetCarDto;
+using CarRental.Application.Functions.Users.Queries.GetUserModelsCommon;
 using CarRental.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace CarRental.Application.Mapper
         {
             CreateMap<Car, CarDto>().ReverseMap();
             CreateMap<AddCarCommand, Car>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }

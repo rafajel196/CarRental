@@ -32,14 +32,19 @@ namespace CarRental.Persistance.EF
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarRentalContext).Assembly);
 
-            foreach(var item in CarAddressesSeed.Get())
+            foreach (var item in CarAddressesSeed.Get())
             {
                 modelBuilder.Entity<CarAddress>().HasData(item);
             }
 
-            foreach(var item in CarsSeed.Get())
+            foreach (var item in CarsSeed.Get())
             {
                 modelBuilder.Entity<Car>().HasData(item);
+            }
+
+            foreach (var item in UserSeed.Get())
+            {
+                modelBuilder.Entity<User>().HasData(item);
             }
         }
     }

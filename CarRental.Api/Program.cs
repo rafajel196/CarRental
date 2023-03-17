@@ -27,6 +27,7 @@ namespace CarRental.Api
 
             builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             builder.Services.AddScoped<ICarRepository, CarRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
             var app = builder.Build();
@@ -51,6 +52,13 @@ namespace CarRental.Api
                 var cars = await db.Cars.ToListAsync();
 
                 return cars;
+            });
+
+            app.MapGet("users", async (CarRentalContext db) =>
+            {
+                var users = await db.Users.ToListAsync();
+
+                return users;
             });
 
             app.Run();

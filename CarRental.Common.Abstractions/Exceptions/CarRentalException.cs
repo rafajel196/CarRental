@@ -10,11 +10,4 @@ namespace CarRental.Common.Abstractions.Exceptions
     {
         protected CarRentalException(string message) : base(message) { }
     }
-
-    public abstract class NotFoundException : CarRentalException
-    {
-        protected NotFoundException(string message) : base(message)
-        {
-        }
-    }
 }

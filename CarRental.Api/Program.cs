@@ -28,6 +28,7 @@ namespace CarRental.Api
             builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             builder.Services.AddScoped<ICarRepository, CarRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ICarAddressRepository, CarAddressRepository>();
 
 
             var app = builder.Build();

@@ -10,6 +10,5 @@ namespace CarRental.Application.Contracts.Persistance
 {
     public interface ICarRepository : IAsyncRepository<Car>
     {
-
     }
 }

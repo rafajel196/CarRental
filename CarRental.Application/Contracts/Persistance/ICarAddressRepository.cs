@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Contracts.Persistance
 {
-    public interface IUserRepository : IAsyncRepository<User>
+    public interface ICarAddressRepository : IAsyncRepository<CarAddress>
     {
     }
 }

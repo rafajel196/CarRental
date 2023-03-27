@@ -11,7 +11,7 @@ using CarRental.Application.Functions.CarAddresses.Commands.DeleteCarAddress;
 namespace CarRental.Api.Controllers
 {
     [ApiController]
-    [Route("api/carAddress")]
+    [Route("api/car-address")]
     public class CarAddressController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -37,7 +37,7 @@ namespace CarRental.Api.Controllers
             return Ok(address);
         }
 
-        [HttpGet("byCarId/{carId}")]
+        [HttpGet("car/{carId}")]
         public async Task<ActionResult<CarAddressDto>> GetCarAddressByCarId([FromRoute] int carId)
         {
             var address = await _mediator.Send(new GetCarAddressByCarIdQuery() { CarId = carId });
@@ -45,28 +45,28 @@ namespace CarRental.Api.Controllers
             return Ok(address);
         }
 
-        [HttpPost("add")]
-        public async Task<ActionResult<int>> AddCarAddress([FromQuery] AddCarAddressCommand addCarAddress)
+        [HttpPost]
+        public async Task<ActionResult<int>> AddCarAddress([FromBody] AddCarAddressCommand addCarAddress)
         {
             var result = await _mediator.Send(addCarAddress);
 
-            return Created($"Car id = {result}", null);
+            return Created($"Car address id = {result}", null);
         }
 
-        [HttpPut("update")]
-        public async Task<ActionResult<Unit>> UpdateCarAddress([FromQuery] UpdateCarAddressCommand updateCarAddress)
+        [HttpPut]
+        public async Task<ActionResult<Unit>> UpdateCarAddress([FromBody] UpdateCarAddressCommand updateCarAddress)
         {
             var result = await _mediator.Send(updateCarAddress);
 
             return Ok("Car address updated");
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<Unit>> DeleteCarAddress([FromRoute] int id)
         {
             var result = await _mediator.Send(new DeleteCarAddressCommand() { Id = id });
 
-            return Ok("Car deleted");
+            return Ok("Car address deleted");
         }
     }
 }

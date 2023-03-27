@@ -41,7 +41,7 @@ namespace CarRental.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getByAddressId/{id}")]
+        [HttpGet("address-id/{id}")]
         public async Task<ActionResult<List<CarDto>>> GetCarsByAddressId([FromRoute] int id)
         {
             var result = await _mediator.Send(new GetCarsByAddressIdQuery() { Id = id });
@@ -49,25 +49,23 @@ namespace CarRental.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost("add")]
-        public async Task<ActionResult<int>> AddCar([FromQuery] AddCarCommand addCar)
+        [HttpPost]
+        public async Task<ActionResult<int>> AddCar([FromBody] AddCarCommand addCar)
         {
             var newCar = await _mediator.Send(addCar);
 
             return Created($"New car id = {newCar}", null);
         }
 
-        [HttpPut("update/{id}")]
-        public async Task<ActionResult<Unit>> UpdateCar([FromQuery] UpdateCarCommand updateCar, [FromRoute] int id, CancellationToken cancellationToken)
+        [HttpPut]
+        public async Task<ActionResult<Unit>> UpdateCar([FromBody] UpdateCarCommand updateCar, CancellationToken cancellationToken)
         {
-            updateCar.Id = id;
-
             var car = await _mediator.Send(updateCar);
 
             return Ok("Car updated");
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<int>> DeleteCarById([FromRoute] int id)
         {
             var car = await _mediator.Send(new DeleteCarCommand() { Id = id });

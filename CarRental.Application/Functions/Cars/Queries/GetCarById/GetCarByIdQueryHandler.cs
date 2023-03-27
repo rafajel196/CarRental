@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Exceptions;
 using CarRental.Application.Functions.Cars.Queries.GetCarDto;
 using CarRental.Common.Abstractions.Exceptions;
 using MediatR;
@@ -28,7 +29,7 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarById
 
             if (car is null)
             {
-                throw new NotImplementedException();
+                throw new CarNotFoundException();
             }
 
             var result = _mapper.Map<CarDto>(car);

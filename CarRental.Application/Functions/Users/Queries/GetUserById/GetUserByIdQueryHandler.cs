@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Exceptions;
 using CarRental.Application.Functions.Users.Queries.GetUserModelsCommon;
 using MediatR;
 using System;
@@ -26,7 +27,7 @@ namespace CarRental.Application.Functions.Users.Queries.GetUserById
             var user = await _userRepository.GetByIdAsync(request.Id);
             if (user == null)
             {
-                throw new NotImplementedException();
+                throw new UserNotFoundException();
             }
             var userDto = _mapper.Map<UserDto>(user);
 

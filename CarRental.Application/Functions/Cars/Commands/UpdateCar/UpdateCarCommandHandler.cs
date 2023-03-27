@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Exceptions;
 using CarRental.Application.Functions.Cars.Queries.GetCarDto;
 using CarRental.Domain.Entities;
 using MediatR;
@@ -14,12 +15,10 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
     public class UpdateCarCommandHandler : IRequestHandler<UpdateCarCommand, Unit>
     {
         private readonly ICarRepository _carRepository;
-        private readonly IMapper _mapper;
 
-        public UpdateCarCommandHandler(ICarRepository carRepository, IMapper mapper)
+        public UpdateCarCommandHandler(ICarRepository carRepository)
         {
             _carRepository = carRepository;
-            _mapper = mapper;
         }
 
         public async Task<Unit> Handle(UpdateCarCommand updateCar, CancellationToken cancellationToken)
@@ -27,7 +26,7 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
             var car = await _carRepository.GetByIdAsync(updateCar.Id);
             if (car is null)
             {
-                throw new NotImplementedException();
+                throw new CarNotFoundException();
             }
 
             car.Mark = updateCar.Mark;

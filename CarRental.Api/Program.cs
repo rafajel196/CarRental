@@ -1,7 +1,12 @@
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Functions.Cars.Commands.AddCar;
+using CarRental.Application.Functions.Cars.Commands.UpdateCar;
+using CarRental.Application.Middleware;
 using CarRental.Persistance.EF;
 using CarRental.Persistance.EF.Repositories;
 using CarRental.Persistance.EF.SeedData;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -20,6 +25,7 @@ namespace CarRental.Api
                 );
 
             builder.Services.AddControllers();
+            builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
@@ -30,6 +36,10 @@ namespace CarRental.Api
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICarAddressRepository, CarAddressRepository>();
 
+            builder.Services.AddScoped<ErrorHandlingMiddleware>();
+            builder.Services.AddScoped<IValidator<AddCarCommand>, AddCarCommandValidator>();
+            builder.Services.AddScoped<IValidator<UpdateCarCommand>, UpdateCarCommandValidator>();
+
 
             var app = builder.Build();
 
@@ -39,10 +49,11 @@ namespace CarRental.Api
                 app.UseSwaggerUI();
             }
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseHttpsRedirection();
             app.UseRouting();
-            //app.UseAuthorization();
             //app.UseAuthentication();
+            //app.UseAuthorization();
 
             //app.UseCors("AllowAlls");
 

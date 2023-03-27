@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Exceptions;
 using CarRental.Application.Functions.CarAddresses.Queries.CarAddressModelCommon;
 using MediatR;
 using System;
@@ -27,9 +28,13 @@ namespace CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressByCa
             var car = await _carRepository.GetByIdAsync(request.CarId);
             if (car == null)
             {
-                throw new NotImplementedException();
+                throw new CarAddressNotFoundException();
             }
             var address = await _carAddressRepository.GetByIdAsync(car.CarAddressId);
+            if (address == null)
+            {
+                throw new CarAddressNotFoundException();
+            }
             var addressDto = _mapper.Map<CarAddressDto>(address);
 
             return addressDto;

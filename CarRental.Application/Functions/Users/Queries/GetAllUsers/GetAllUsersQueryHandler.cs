@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Exceptions;
 using CarRental.Application.Functions.Users.Queries.GetUserModelsCommon;
 using MediatR;
 using System;
@@ -27,7 +28,7 @@ namespace CarRental.Application.Functions.Users.Queries.GetAllUsers
 
             if (users is null)
             {
-                throw new NotImplementedException();
+                throw new UserNotFoundException();
             }
 
             var usersDto = _mapper.Map<List<UserDto>>(users);

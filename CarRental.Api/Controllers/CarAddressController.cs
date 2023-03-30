@@ -24,7 +24,7 @@ namespace CarRental.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<CarAddressDto>>> GetAllCarsAddresses()
         {
-            var addresses = await _mediator.Send(new GetAllCarsAddresesQuery());
+            var addresses = await _mediator.Send(new GetAllCarsAddressesQuery());
 
             return Ok(addresses);
         }

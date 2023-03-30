@@ -41,10 +41,10 @@ namespace CarRental.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("address-id/{id}")]
-        public async Task<ActionResult<List<CarDto>>> GetCarsByAddressId([FromRoute] int id)
+        [HttpGet("address-id/{carAddressId}")]
+        public async Task<ActionResult<List<CarDto>>> GetCarsByAddressId([FromRoute] int carAddressId)
         {
-            var result = await _mediator.Send(new GetCarsByAddressIdQuery() { Id = id });
+            var result = await _mediator.Send(new GetCarsByAddressIdQuery() { Id = carAddressId });
 
             return Ok(result);
         }

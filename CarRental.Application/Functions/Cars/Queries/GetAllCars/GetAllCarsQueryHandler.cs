@@ -14,12 +14,10 @@ namespace CarRental.Application.Functions.Cars.Queries.GetAllCars
     public class GetAllCarsQueryHandler : IRequestHandler<GetAllCarsQuery, List<CarDto>>
     {
         private readonly ICarRepository _carRepository;
-        private readonly IMapper _mapper;
 
-        public GetAllCarsQueryHandler(ICarRepository carRepository, IMapper mapper)
+        public GetAllCarsQueryHandler(ICarRepository carRepository)
         {
             _carRepository = carRepository;
-            _mapper = mapper;
         }
 
         public async Task<List<CarDto>> Handle(GetAllCarsQuery request, CancellationToken cancellationToken)
@@ -31,7 +29,17 @@ namespace CarRental.Application.Functions.Cars.Queries.GetAllCars
                 throw new CarNotFoundException();
             }
 
-            var result = _mapper.Map<List<CarDto>>(cars);
+            var sortedCars = cars.OrderBy(x => x.Mark).ThenBy(x => x.Model).ToList();
+
+            var result = new List<CarDto>();
+            foreach (var car in sortedCars)
+            {
+                result.Add(new CarDto()
+                {
+                    Mark = car.Mark,
+                    Model = car.Model
+                });
+            }
 
             return result;
         }

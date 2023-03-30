@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Functions.Cars.Queries.GetCarDto;
 using CarRental.Domain.Entities;
 using MediatR;
 using System;
@@ -13,17 +14,22 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
     public class AddCarCommandHandler : IRequestHandler<AddCarCommand, int>
     {
         private readonly ICarRepository _carRepository;
-        private readonly IMapper _mapper;
 
-        public AddCarCommandHandler(ICarRepository carRepository, IMapper mapper)
+        public AddCarCommandHandler(ICarRepository carRepository)
         {
             _carRepository = carRepository;
-            _mapper = mapper;
         }
 
         public async Task<int> Handle(AddCarCommand request, CancellationToken cancellationToken)
         {
-            var newCar = _mapper.Map<Car>(request);
+            var newCar = new Car()
+            {
+                Mark = request.Mark,
+                Model = request.Model,
+                RegNumber = request.RegNumber,
+                FuelConsumption = request.FuelConsumption,
+                CarAddressId = request.CarAddressId
+            };
 
             newCar = await _carRepository.AddAsync(newCar);
 

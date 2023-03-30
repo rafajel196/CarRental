@@ -14,11 +14,9 @@ namespace CarRental.Application.Functions.Users.Queries.GetAllUsers
     public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<UserDto>>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IMapper _mapper;
 
-        public GetAllUsersQueryHandler(IUserRepository userRepository, IMapper mapper)
+        public GetAllUsersQueryHandler(IUserRepository userRepository)
         {
-            _mapper = mapper;
             _userRepository = userRepository;
         }
 
@@ -31,7 +29,16 @@ namespace CarRental.Application.Functions.Users.Queries.GetAllUsers
                 throw new UserNotFoundException();
             }
 
-            var usersDto = _mapper.Map<List<UserDto>>(users);
+            var usersDto = new List<UserDto>();
+            foreach (var user in users)
+            {
+                usersDto.Add(new UserDto()
+                {
+                    FullName = user.FullName,
+                    Email = user.Email
+                });
+            }
+
             return usersDto;
         }
     }

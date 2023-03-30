@@ -15,12 +15,10 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarById
     public class GetCarByIdQueryHandler : IRequestHandler<GetCarByIdQuery, CarDto>
     {
         private readonly ICarRepository _carRepository;
-        private readonly IMapper _mapper;
 
-        public GetCarByIdQueryHandler(ICarRepository carRepository, IMapper mapper)
+        public GetCarByIdQueryHandler(ICarRepository carRepository)
         {
             _carRepository = carRepository;
-            _mapper = mapper;
         }
 
         public async Task<CarDto> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
@@ -32,7 +30,11 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarById
                 throw new CarNotFoundException();
             }
 
-            var result = _mapper.Map<CarDto>(car);
+            var result = new CarDto()
+            {
+                Mark = car.Mark,
+                Model = car.Model
+            };
 
             return result;
         }

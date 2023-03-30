@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress
             var carAddress = await _carAddressRepository.GetByIdAsync(request.Id);
             if (carAddress == null)
             {
-                throw new NotImplementedException();
+                throw new CarAddressNotFoundException();
             }
             carAddress.Street = request.Street;
             carAddress.City = request.City;

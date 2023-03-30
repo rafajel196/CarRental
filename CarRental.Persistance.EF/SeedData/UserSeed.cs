@@ -26,7 +26,7 @@ namespace CarRental.Persistance.EF.SeedData
             var user2 = new User()
             {
                 Id = 2,
-                FullName = "Janusz Placek",
+                FullName = "Jacek Placek",
                 Email = "jplacek@wp.pl",
                 BirthDate = new DateTime(2005, 9, 4),
                 LicenceDate = new DateTime(2022, 1, 24)

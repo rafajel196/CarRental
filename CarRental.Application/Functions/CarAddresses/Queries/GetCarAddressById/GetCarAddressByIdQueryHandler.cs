@@ -14,11 +14,9 @@ namespace CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressById
     public class GetCarAddressByIdQueryHandler : IRequestHandler<GetCarAddressByIdQuery, CarAddressDto>
     {
         private readonly ICarAddressRepository _carAddressRepository;
-        private readonly IMapper _mapper;
-        public GetCarAddressByIdQueryHandler(ICarAddressRepository carAddressRepository, IMapper mapper)
+        public GetCarAddressByIdQueryHandler(ICarAddressRepository carAddressRepository)
         {
             _carAddressRepository = carAddressRepository;
-            _mapper = mapper;
         }
 
         public async Task<CarAddressDto> Handle(GetCarAddressByIdQuery request, CancellationToken cancellationToken)
@@ -28,7 +26,13 @@ namespace CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressById
             {
                 throw new CarAddressNotFoundException();
             }
-            var addressDto = _mapper.Map<CarAddressDto>(address);
+
+            var addressDto = new CarAddressDto()
+            {
+                City = address.City,
+                Street = address.Street
+            };
+
             return addressDto;
         }
     }

@@ -14,12 +14,10 @@ namespace CarRental.Application.Functions.Users.Queries.GetUserById
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IMapper _mapper;
 
-        public GetUserByIdQueryHandler(IUserRepository userRepository, IMapper mapper)
+        public GetUserByIdQueryHandler(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _mapper = mapper;
         }
 
         public async Task<UserDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
@@ -29,7 +27,11 @@ namespace CarRental.Application.Functions.Users.Queries.GetUserById
             {
                 throw new UserNotFoundException();
             }
-            var userDto = _mapper.Map<UserDto>(user);
+            var userDto = new UserDto()
+            {
+                FullName = user.FullName,
+                Email = user.Email
+            };
 
             return userDto;
         }

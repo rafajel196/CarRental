@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.CarAddresses.Queries.GetAllCarsAddreses
 {
-    public class GetAllCarsAddresesQuery : IRequest<List<CarAddressDto>>
+    public class GetAllCarsAddressesQuery : IRequest<List<CarAddressDto>>
     {
     }
 }

@@ -13,12 +13,10 @@ namespace CarRental.Application.Functions.Cars.Commands.DeleteCar
     public class DeleteCarCommandHandler : IRequestHandler<DeleteCarCommand, int>
     {
         private readonly ICarRepository _carRepository;
-        private readonly IMapper _mapper;
 
-        public DeleteCarCommandHandler(ICarRepository carRepository, IMapper mapper)
+        public DeleteCarCommandHandler(ICarRepository carRepository)
         {
             _carRepository = carRepository;
-            _mapper = mapper;
         }
 
         public async Task<int> Handle(DeleteCarCommand request, CancellationToken cancellationToken)

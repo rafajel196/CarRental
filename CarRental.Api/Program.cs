@@ -1,6 +1,10 @@
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
+using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
 using CarRental.Application.Functions.Cars.Commands.UpdateCar;
+using CarRental.Application.Functions.Users.Commands.AddUser;
+using CarRental.Application.Functions.Users.Commands.UpdateUser;
 using CarRental.Application.Middleware;
 using CarRental.Persistance.EF;
 using CarRental.Persistance.EF.Repositories;
@@ -39,6 +43,10 @@ namespace CarRental.Api
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
             builder.Services.AddScoped<IValidator<AddCarCommand>, AddCarCommandValidator>();
             builder.Services.AddScoped<IValidator<UpdateCarCommand>, UpdateCarCommandValidator>();
+            builder.Services.AddScoped<IValidator<AddCarAddressCommand>, AddCarAddressCommandValidator>();
+            builder.Services.AddScoped<IValidator<UpdateCarAddressCommand>, UpdateCarAddressCommandValidator>();
+            builder.Services.AddScoped<IValidator<AddUserCommand>, AddUserCommandValidator>();
+            builder.Services.AddScoped<IValidator<UpdateUserCommand>, UpdateUserCommandValidator>();
 
 
             var app = builder.Build();
@@ -59,18 +67,11 @@ namespace CarRental.Api
 
             app.MapControllers();
 
-            app.MapGet("data", async (CarRentalContext db) =>
+            app.MapGet("cars", async (CarRentalContext db) =>
             {
                 var cars = await db.Cars.ToListAsync();
 
                 return cars;
-            });
-
-            app.MapGet("users", async (CarRentalContext db) =>
-            {
-                var users = await db.Users.ToListAsync();
-
-                return users;
             });
 
             app.Run();

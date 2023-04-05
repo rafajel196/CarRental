@@ -31,6 +31,7 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
             car.Model = updateCar.Model;
             car.RegNumber = updateCar.RegNumber;
             car.FuelConsumption = updateCar.FuelConsumption;
+            car.IsAvailable = updateCar.IsAvailable;
             car.CarAddressId = updateCar.CarAddressId;
 
             await _carRepository.UpdateAsync(car);

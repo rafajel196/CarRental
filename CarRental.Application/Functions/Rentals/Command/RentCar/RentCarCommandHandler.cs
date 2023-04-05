@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.Functions.Rentals.Command
+namespace CarRental.Application.Functions.Rentals.Command.RentCar
 {
     public class RentCarCommandHandler : IRequestHandler<RentCarCommand, string>
     {
@@ -43,7 +43,7 @@ namespace CarRental.Application.Functions.Rentals.Command
             await _rentalRepository.AddAsync(rentCar);
             await _carRepository.UpdateAsync(car);
 
-            var result = $"Car {car.Mark} {car.Model} rented from {rentCar.RentDate} to {rentCar.ReturnDate}";
+            var result = $"Car {car.Mark} {car.Model} rented from {rentCar.RentDate.ToShortDateString()} to {rentCar.ReturnDate.ToShortDateString()}";
 
             return result;
         }

@@ -4,6 +4,7 @@ using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
 using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
 using CarRental.Application.Functions.Cars.Commands.UpdateCar;
+using CarRental.Application.Functions.Rentals.Command.RentCar;
 using CarRental.Application.Functions.Users.Commands.RegisterUser;
 using CarRental.Application.Functions.Users.Commands.UpdateUser;
 using CarRental.Application.Middleware;
@@ -77,6 +78,7 @@ namespace CarRental.Api
             builder.Services.AddScoped<IValidator<UpdateCarAddressCommand>, UpdateCarAddressCommandValidator>();
             builder.Services.AddScoped<IValidator<UpdateUserCommand>, UpdateUserCommandValidator>();
             builder.Services.AddScoped<IValidator<RegisterUserCommand>, RegisterUserCommandValidator>();
+            builder.Services.AddScoped<IValidator<RentCarCommand>, RentCarCommandValidator>();
 
 
             var app = builder.Build();

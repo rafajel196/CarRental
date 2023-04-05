@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.Functions.Rentals.Command
+namespace CarRental.Application.Functions.Rentals.Command.RentCar
 {
     public class RentCarCommand : IRequest<string>
     {

@@ -37,6 +37,9 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
                 .WithMessage("Fuel consumption must not be empty")
                 .PrecisionScale(3, 1, false)
                 .WithMessage("The value of the 'Fuel Consumption' field cannot be longer than 3 digits with 1 digit after the decimal point allowed");
+            RuleFor(x => x.IsAvailable)
+                .NotEmpty()
+                .WithMessage("Is available must not be empty");
             RuleFor(x => x.CarAddressId)
                 .NotEmpty()
                 .WithMessage("Car address Id must not be empty");

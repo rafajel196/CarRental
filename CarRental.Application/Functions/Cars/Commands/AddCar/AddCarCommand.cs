@@ -14,8 +14,9 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
         public string Model { get; set; }
         public string RegNumber { get; set; }
         public decimal FuelConsumption { get; set; }
+        public bool IsAvailable { get; set; } = true;
 
         public int CarAddressId { get; set; }
     }
-    
+
 }

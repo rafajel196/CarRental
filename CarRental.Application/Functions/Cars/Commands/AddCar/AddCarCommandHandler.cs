@@ -26,6 +26,7 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
                 Model = request.Model,
                 RegNumber = request.RegNumber,
                 FuelConsumption = request.FuelConsumption,
+                IsAvailable = request.IsAvailable,
                 CarAddressId = request.CarAddressId
             };
 

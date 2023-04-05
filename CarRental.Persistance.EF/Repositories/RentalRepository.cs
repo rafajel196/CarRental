@@ -19,6 +19,13 @@ namespace CarRental.Persistance.EF.Repositories
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public int GetRentIdByCarId(int carId)
+        {
+            var rentId = _dbContext.Rentals.Any(x => x.CarId == carId).Id;
+
+            return rentId;
+        }
+
         public int GetUserId()
         {
             var userId = int.Parse(_httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value);

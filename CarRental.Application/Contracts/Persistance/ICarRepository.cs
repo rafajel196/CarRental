@@ -1,5 +1,4 @@
-﻿using CarRental.Application.Functions.Cars.Queries.GetCarDto;
-using CarRental.Domain.Entities;
+﻿using CarRental.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

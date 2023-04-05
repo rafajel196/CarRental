@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CarRental.Application.Contracts.Persistance;
+﻿using CarRental.Application.Contracts.Persistance;
 using CarRental.Application.Exceptions;
 using MediatR;
 using System;

@@ -1,10 +1,12 @@
-﻿using CarRental.Application.Functions.Users.Commands.AddUser;
+﻿using CarRental.Application.DTOs;
 using CarRental.Application.Functions.Users.Commands.DeleteUser;
+using CarRental.Application.Functions.Users.Commands.LoginUser;
+using CarRental.Application.Functions.Users.Commands.RegisterUser;
 using CarRental.Application.Functions.Users.Commands.UpdateUser;
 using CarRental.Application.Functions.Users.Queries.GetAllUsers;
 using CarRental.Application.Functions.Users.Queries.GetUserById;
-using CarRental.Application.Functions.Users.Queries.GetUserModelsCommon;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Api.Controllers
@@ -20,7 +22,24 @@ namespace CarRental.Api.Controllers
             _mediator = mediator;
         }
 
+        [HttpPost("register")]
+        public async Task<ActionResult<Unit>> RegisterUser([FromBody] RegisterUserCommand registerUserCommand)
+        {
+            var user = await _mediator.Send(registerUserCommand);
+
+            return Ok();
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> LoginUser([FromBody] LoginUserCommand loginUserCommand)
+        {
+            var token = await _mediator.Send(loginUserCommand);
+
+            return Ok(token);
+        }
+
         [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<List<UserDto>>> GetAllUsers()
         {
             var users = await _mediator.Send(new GetAllUsersQuery());
@@ -29,6 +48,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<UserDto>> GetUserById([FromRoute] int id)
         {
             var user = await _mediator.Send(new GetUserByIdQuery() { Id = id });
@@ -36,15 +56,8 @@ namespace CarRental.Api.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<int>> AddUser([FromBody] AddUserCommand addUserCommand)
-        {
-            var user = await _mediator.Send(addUserCommand);
-
-            return Created($"Created user id = {user}", null);
-        }
-
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<Unit>> UpdateUser([FromBody] UpdateUserCommand updateUserCommand)
         {
             var user = await _mediator.Send(updateUserCommand);
@@ -53,6 +66,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<Unit>> DeleteUser([FromRoute] int id)
         {
             var user = await _mediator.Send(new DeleteUserCommand() { Id = id });

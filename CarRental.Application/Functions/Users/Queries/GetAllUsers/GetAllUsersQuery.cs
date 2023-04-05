@@ -1,4 +1,4 @@
-﻿using CarRental.Application.Functions.Users.Queries.GetUserModelsCommon;
+﻿using CarRental.Application.DTOs;
 using MediatR;
 using System;
 using System.Collections.Generic;

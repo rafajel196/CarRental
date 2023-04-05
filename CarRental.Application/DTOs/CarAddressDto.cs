@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.Functions.CarAddresses.Queries.CarAddressModelCommon
+namespace CarRental.Application.DTOs
 {
     public class CarAddressDto
     {

@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
-using CarRental.Application.Functions.Cars.Queries.GetCarDto;
 using CarRental.Application.Functions.Cars.Queries.GetAllCars;
 using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using CarRental.Application.Functions.Cars.Queries.GetCarsByAddressId;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
 using CarRental.Application.Functions.Cars.Commands.UpdateCar;
 using CarRental.Application.Functions.Cars.Commands.DeleteCar;
+using CarRental.Application.DTOs;
 
 namespace CarRental.Api.Controllers
 {
@@ -50,6 +50,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<int>> AddCar([FromBody] AddCarCommand addCar)
         {
             var newCar = await _mediator.Send(addCar);
@@ -58,6 +59,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<Unit>> UpdateCar([FromBody] UpdateCarCommand updateCar, CancellationToken cancellationToken)
         {
             var car = await _mediator.Send(updateCar);
@@ -66,6 +68,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<int>> DeleteCarById([FromRoute] int id)
         {
             var car = await _mediator.Send(new DeleteCarCommand() { Id = id });

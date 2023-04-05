@@ -1,12 +1,13 @@
 ﻿using CarRental.Application.Functions.CarAddresses.Queries.GetAllCarsAddreses;
 using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressByCarId;
 using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressById;
-using CarRental.Application.Functions.CarAddresses.Queries.CarAddressModelCommon;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
 using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
 using CarRental.Application.Functions.CarAddresses.Commands.DeleteCarAddress;
+using CarRental.Application.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarRental.Api.Controllers
 {
@@ -46,6 +47,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<int>> AddCarAddress([FromBody] AddCarAddressCommand addCarAddress)
         {
             var result = await _mediator.Send(addCarAddress);
@@ -54,6 +56,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<Unit>> UpdateCarAddress([FromBody] UpdateCarAddressCommand updateCarAddress)
         {
             var result = await _mediator.Send(updateCarAddress);
@@ -62,6 +65,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<Unit>> DeleteCarAddress([FromRoute] int id)
         {
             var result = await _mediator.Send(new DeleteCarAddressCommand() { Id = id });

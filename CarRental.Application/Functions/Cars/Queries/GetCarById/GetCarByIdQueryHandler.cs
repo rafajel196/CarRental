@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using CarRental.Application.Contracts.Persistance;
+﻿using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.DTOs;
 using CarRental.Application.Exceptions;
-using CarRental.Application.Functions.Cars.Queries.GetCarDto;
 using CarRental.Common.Abstractions.Exceptions;
 using MediatR;
 using System;

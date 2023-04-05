@@ -23,6 +23,7 @@ namespace CarRental.Persistance.EF.SeedData
                 Model = "406 Coupe",
                 RegNumber = "RLE20095",
                 FuelConsumption = 11.5m,
+                IsAvailable = true,
                 CarAddressId = CarAddressesSeed.Rzeszow
             };
             cars.Add(car1);
@@ -34,6 +35,7 @@ namespace CarRental.Persistance.EF.SeedData
                 Model = "760Li",
                 RegNumber = "RZ30571",
                 FuelConsumption = 14.2m,
+                IsAvailable = true,
                 CarAddressId = CarAddressesSeed.Krakow
             };
             cars.Add(car2);
@@ -45,6 +47,7 @@ namespace CarRental.Persistance.EF.SeedData
                 Model = "R8",
                 RegNumber = "KR87937",
                 FuelConsumption = 12.8m,
+                IsAvailable = true,
                 CarAddressId = CarAddressesSeed.Wroclaw
             };
             cars.Add(car3);
@@ -56,6 +59,7 @@ namespace CarRental.Persistance.EF.SeedData
                 Model = "E46",
                 RegNumber = "RLE30098",
                 FuelConsumption = 8.3m,
+                IsAvailable = true,
                 CarAddressId = CarAddressesSeed.Rzeszow
             };
             cars.Add(car4);
@@ -67,6 +71,7 @@ namespace CarRental.Persistance.EF.SeedData
                 Model = "406 Coupe",
                 RegNumber = "RLE21372",
                 FuelConsumption = 11.5m,
+                IsAvailable = true,
                 CarAddressId = CarAddressesSeed.Rzeszow
             };
             cars.Add(car5);
@@ -78,6 +83,7 @@ namespace CarRental.Persistance.EF.SeedData
                 Model = "TT",
                 RegNumber = "KR91392",
                 FuelConsumption = 12.3m,
+                IsAvailable = true,
                 CarAddressId = CarAddressesSeed.Krakow
             };
             cars.Add(car6);

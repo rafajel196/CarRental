@@ -1,4 +1,4 @@
-﻿using CarRental.Application.Functions.Cars.Queries.GetCarDto;
+﻿using CarRental.Application.DTOs;
 using MediatR;
 using System;
 using System.Collections.Generic;

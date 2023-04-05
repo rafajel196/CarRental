@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.Functions.Users.Queries.GetUserModelsCommon
+namespace CarRental.Application.DTOs
 {
-    public class UserDto
+    public class LoginDto
     {
-        public string FullName { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CarRental.Application.Contracts.Persistance;
+﻿using CarRental.Application.Contracts.Persistance;
 using CarRental.Domain.Entities;
 using MediatR;
 using System;

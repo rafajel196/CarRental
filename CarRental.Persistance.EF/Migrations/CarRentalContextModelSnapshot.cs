@@ -17,10 +17,10 @@ namespace CarRental.Persistance.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("CarRental.Domain.Entities.Car", b =>
                 {
@@ -28,7 +28,7 @@ namespace CarRental.Persistance.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CarAddressId")
                         .HasColumnType("int");
@@ -36,6 +36,9 @@ namespace CarRental.Persistance.EF.Migrations
                     b.Property<decimal>("FuelConsumption")
                         .HasPrecision(3, 1)
                         .HasColumnType("decimal(3,1)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Mark")
                         .IsRequired()
@@ -61,6 +64,7 @@ namespace CarRental.Persistance.EF.Migrations
                             Id = 1,
                             CarAddressId = 1,
                             FuelConsumption = 11.5m,
+                            IsAvailable = true,
                             Mark = "Peugeot",
                             Model = "406 Coupe",
                             RegNumber = "RLE20095"
@@ -70,6 +74,7 @@ namespace CarRental.Persistance.EF.Migrations
                             Id = 2,
                             CarAddressId = 2,
                             FuelConsumption = 14.2m,
+                            IsAvailable = true,
                             Mark = "BMW",
                             Model = "760Li",
                             RegNumber = "RZ30571"
@@ -79,6 +84,7 @@ namespace CarRental.Persistance.EF.Migrations
                             Id = 3,
                             CarAddressId = 3,
                             FuelConsumption = 12.8m,
+                            IsAvailable = true,
                             Mark = "Audi",
                             Model = "R8",
                             RegNumber = "KR87937"
@@ -88,6 +94,7 @@ namespace CarRental.Persistance.EF.Migrations
                             Id = 4,
                             CarAddressId = 1,
                             FuelConsumption = 8.3m,
+                            IsAvailable = true,
                             Mark = "BMW",
                             Model = "E46",
                             RegNumber = "RLE30098"
@@ -97,6 +104,7 @@ namespace CarRental.Persistance.EF.Migrations
                             Id = 5,
                             CarAddressId = 1,
                             FuelConsumption = 11.5m,
+                            IsAvailable = true,
                             Mark = "Peugeot",
                             Model = "406 Coupe",
                             RegNumber = "RLE21372"
@@ -106,6 +114,7 @@ namespace CarRental.Persistance.EF.Migrations
                             Id = 6,
                             CarAddressId = 2,
                             FuelConsumption = 12.3m,
+                            IsAvailable = true,
                             Mark = "Audi",
                             Model = "TT",
                             RegNumber = "KR91392"
@@ -118,7 +127,7 @@ namespace CarRental.Persistance.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -153,13 +162,72 @@ namespace CarRental.Persistance.EF.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CarRental.Domain.Entities.Rental", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RentDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rentals");
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "User"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Manager"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Admin"
+                        });
+                });
+
             modelBuilder.Entity("CarRental.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("date");
@@ -175,35 +243,18 @@ namespace CarRental.Persistance.EF.Migrations
                     b.Property<DateTime>("LicenceDate")
                         .HasColumnType("date");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("RoleId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BirthDate = new DateTime(1998, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "rafajel196@gmail.com",
-                            FullName = "Rafał Krupa",
-                            LicenceDate = new DateTime(2016, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BirthDate = new DateTime(2005, 9, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "jplacek@wp.pl",
-                            FullName = "Jacek Placek",
-                            LicenceDate = new DateTime(2022, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BirthDate = new DateTime(1977, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "adaśleć@gmail.com",
-                            FullName = "Adam Małysz",
-                            LicenceDate = new DateTime(1996, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Car", b =>
@@ -215,6 +266,17 @@ namespace CarRental.Persistance.EF.Migrations
                         .IsRequired();
 
                     b.Navigation("CarAddress");
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.User", b =>
+                {
+                    b.HasOne("CarRental.Domain.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("CarRental.Domain.Entities.CarAddress", b =>

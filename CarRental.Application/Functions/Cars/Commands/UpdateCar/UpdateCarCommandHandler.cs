@@ -33,6 +33,7 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
             car.FuelConsumption = updateCar.FuelConsumption;
             car.IsAvailable = updateCar.IsAvailable;
             car.CarAddressId = updateCar.CarAddressId;
+            car.PriceCategoryId = updateCar.PriceCategoryId;
 
             await _carRepository.UpdateAsync(car);
 

@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Contracts.Persistance
 {
-    public interface IRentalRepository : IAsyncRepository<Rental>
+    public interface IPriceCategoryRepository : IAsyncRepository<PriceCategory>
     {
-        int GetUserId();
-        int GetRentIdByCarId(int carId);
-        decimal GetCarCategoryMultiplier(int categoryId);
+        bool IsPriceCategoryExist(int priceCategoryId);
     }
 }

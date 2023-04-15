@@ -31,10 +31,17 @@ namespace CarRental.Application.Functions.Rentals.Command.RentCar
                 throw new CarNotFoundException();
             }
 
+            var user = await _userRepository.GetByIdAsync(_rentalRepository.GetUserId());
+            var licenceHavingTime = DateTime.Now - user.LicenceDate;
+            if (licenceHavingTime.TotalDays < 365 * 3 && car.PriceCategoryId == 4)
+            {
+                throw new CannotRentThePremiumCarException();
+            }
+
             var rentCar = new Rental()
             {
                 CarId = request.CarId,
-                UserId = _rentalRepository.GetUserId(),
+                UserId = user.Id,
                 RentDate = request.RentDate,
                 ReturnDate = request.ReturnDate
             };

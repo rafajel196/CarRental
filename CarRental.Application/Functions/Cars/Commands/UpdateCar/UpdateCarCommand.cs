@@ -17,5 +17,6 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
         public decimal FuelConsumption { get; set; }
         public bool IsAvailable { get; set; }
         public int CarAddressId { get; set; }
+        public int PriceCategoryId { get; set; }
     }
 }

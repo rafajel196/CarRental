@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace CarRental.Domain.Entities
 {
-    public class Role
+    public class PriceCategory
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        
-        public List<User> Users { get; set;} = new List<User>();
+        public string Category { get; set; }
+        public decimal Multiplier { get; set; }
+
+        public List<Car> Cars { get; set; } = new List<Car>();
     }
 }

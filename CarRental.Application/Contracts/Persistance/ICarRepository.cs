@@ -1,4 +1,5 @@
-﻿using CarRental.Domain.Entities;
+﻿using CarRental.Application.DTOs;
+using CarRental.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace CarRental.Application.Contracts.Persistance
 {
     public interface ICarRepository : IAsyncRepository<Car>
     {
+        Task<List<Car>> GetAllSelectedCars(string mark, string model);
     }
 }

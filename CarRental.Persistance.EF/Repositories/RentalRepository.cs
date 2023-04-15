@@ -19,9 +19,16 @@ namespace CarRental.Persistance.EF.Repositories
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public decimal GetCarCategoryMultiplier(int categoryId)
+        {
+            var categoryMultiplier = (decimal)(_dbContext.PriceCategories.FirstOrDefault(x => x.Id == categoryId).Multiplier);
+
+            return categoryMultiplier;
+        }
+
         public int GetRentIdByCarId(int carId)
         {
-            var rentId = _dbContext.Rentals.Any(x => x.CarId == carId).Id;
+            var rentId = _dbContext.Rentals.FirstOrDefault(x => x.CarId == carId).Id;
 
             return rentId;
         }

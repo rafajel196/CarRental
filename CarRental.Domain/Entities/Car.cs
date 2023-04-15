@@ -17,5 +17,7 @@ namespace CarRental.Domain.Entities
 
         public CarAddress CarAddress { get; set; }
         public int CarAddressId { get; set; }
+        public PriceCategory PriceCategory { get; set; }
+        public int PriceCategoryId { get; set; }
     }
 }

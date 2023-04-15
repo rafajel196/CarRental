@@ -36,14 +36,12 @@ namespace CarRental.Application.Functions.Rentals.Command.ReturnCar
                 throw new CarNotFoundException();
             }
 
-            //var userId = _rentalRepository.GetUserId();
-
             await _rentalRepository.DeleteAsync(rentedCar);
 
             car.IsAvailable = true;
             await _carRepository.UpdateAsync(car);
 
-            return "Car returned";
+            return $"Car {car.Mark} {car.Model} returned";
         }
     }
 }

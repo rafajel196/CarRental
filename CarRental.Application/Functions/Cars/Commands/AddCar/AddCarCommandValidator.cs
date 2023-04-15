@@ -11,10 +11,12 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
     public class AddCarCommandValidator : AbstractValidator<AddCarCommand>
     {
         private readonly ICarAddressRepository _carAddressRepository;
-        public AddCarCommandValidator(ICarAddressRepository carAddressRepository)
+        private readonly IPriceCategoryRepository _priceCategoryRepository;
+
+        public AddCarCommandValidator(ICarAddressRepository carAddressRepository, IPriceCategoryRepository priceCategoryRepository)
         {
             _carAddressRepository = carAddressRepository;
-
+            _priceCategoryRepository = priceCategoryRepository;
             RuleFor(x => x.Mark)
                 .NotEmpty()
                 .WithMessage("Mark must not be empty")
@@ -38,15 +40,28 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
             RuleFor(x => x.CarAddressId)
                 .NotEmpty()
                 .WithMessage("Car address Id must not be empty");
+            RuleFor(x => x.PriceCategoryId)
+                .NotEmpty()
+                .WithMessage("Price category Id must not be empty");
 
             RuleFor(x => x)
                 .Must(IsCarAddressExist)
                 .WithMessage("Car address not exist");
+            RuleFor(x => x)
+                .Must(IsPriceCategoryExist)
+                .WithMessage("Price category does not exist");
         }
 
         private bool IsCarAddressExist(AddCarCommand addCarCommand)
         {
             var result = _carAddressRepository.IsCarAddressExist(addCarCommand.CarAddressId);
+
+            return result;
+        }
+
+        private bool IsPriceCategoryExist(AddCarCommand addCarCommand)
+        {
+            var result = _priceCategoryRepository.IsPriceCategoryExist(addCarCommand.PriceCategoryId);
 
             return result;
         }

@@ -1,4 +1,5 @@
 using CarRental.Application.Authentication;
+using CarRental.Application.Authorization;
 using CarRental.Application.Contracts.Persistance;
 using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
 using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
@@ -15,6 +16,7 @@ using CarRental.Persistance.EF.SeedData;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -56,6 +58,12 @@ namespace CarRental.Api
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey)),
                 };
             });
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AtLeast18", builder => builder.AddRequirements(new MinimumAgeRequirement(18)));
+            });
+
+            builder.Services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
 
             builder.Services.AddControllers();
             builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
@@ -70,6 +78,7 @@ namespace CarRental.Api
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICarAddressRepository, CarAddressRepository>();
             builder.Services.AddScoped<IRentalRepository, RentalRepository>();
+            builder.Services.AddScoped<IPriceCategoryRepository, PriceCategoryRepository>();
 
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
             builder.Services.AddScoped<IValidator<AddCarCommand>, AddCarCommandValidator>();

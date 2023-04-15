@@ -4,6 +4,7 @@ using CarRental.Persistance.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Persistance.EF.Migrations
 {
     [DbContext(typeof(CarRentalContext))]
-    partial class CarRentalContextModelSnapshot : ModelSnapshot
+    [Migration("20230407141801_PriceCategoryAdded")]
+    partial class PriceCategoryAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +63,7 @@ namespace CarRental.Persistance.EF.Migrations
 
                     b.HasIndex("PriceCategoryId");
 
-                    b.ToTable("Cars", (string)null);
+                    b.ToTable("Cars");
 
                     b.HasData(
                         new
@@ -150,7 +152,7 @@ namespace CarRental.Persistance.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CarAddresses", (string)null);
+                    b.ToTable("CarAddresses");
 
                     b.HasData(
                         new
@@ -191,7 +193,7 @@ namespace CarRental.Persistance.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PriceCategories", (string)null);
+                    b.ToTable("PriceCategories");
 
                     b.HasData(
                         new
@@ -242,7 +244,7 @@ namespace CarRental.Persistance.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rentals", (string)null);
+                    b.ToTable("Rentals");
                 });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Role", b =>
@@ -259,7 +261,7 @@ namespace CarRental.Persistance.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
 
                     b.HasData(
                         new
@@ -312,7 +314,7 @@ namespace CarRental.Persistance.EF.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Car", b =>

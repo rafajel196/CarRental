@@ -17,6 +17,7 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
         public bool IsAvailable { get; set; } = true;
 
         public int CarAddressId { get; set; }
+        public int PriceCategoryId { get; set; }
     }
 
 }

@@ -24,7 +24,8 @@ namespace CarRental.Persistance.EF.SeedData
                 RegNumber = "RLE20095",
                 FuelConsumption = 11.5m,
                 IsAvailable = true,
-                CarAddressId = CarAddressesSeed.Rzeszow
+                CarAddressId = CarAddressesSeed.Rzeszow,
+                PriceCategoryId = 4
             };
             cars.Add(car1);
 
@@ -36,7 +37,8 @@ namespace CarRental.Persistance.EF.SeedData
                 RegNumber = "RZ30571",
                 FuelConsumption = 14.2m,
                 IsAvailable = true,
-                CarAddressId = CarAddressesSeed.Krakow
+                CarAddressId = CarAddressesSeed.Krakow,
+                PriceCategoryId = 2
             };
             cars.Add(car2);
 
@@ -48,7 +50,8 @@ namespace CarRental.Persistance.EF.SeedData
                 RegNumber = "KR87937",
                 FuelConsumption = 12.8m,
                 IsAvailable = true,
-                CarAddressId = CarAddressesSeed.Wroclaw
+                CarAddressId = CarAddressesSeed.Wroclaw,
+                PriceCategoryId = 3
             };
             cars.Add(car3);
 
@@ -60,7 +63,8 @@ namespace CarRental.Persistance.EF.SeedData
                 RegNumber = "RLE30098",
                 FuelConsumption = 8.3m,
                 IsAvailable = true,
-                CarAddressId = CarAddressesSeed.Rzeszow
+                CarAddressId = CarAddressesSeed.Rzeszow,
+                PriceCategoryId = 2
             };
             cars.Add(car4);
 
@@ -72,7 +76,8 @@ namespace CarRental.Persistance.EF.SeedData
                 RegNumber = "RLE21372",
                 FuelConsumption = 11.5m,
                 IsAvailable = true,
-                CarAddressId = CarAddressesSeed.Rzeszow
+                CarAddressId = CarAddressesSeed.Rzeszow,
+                PriceCategoryId = 4
             };
             cars.Add(car5);
 
@@ -84,7 +89,8 @@ namespace CarRental.Persistance.EF.SeedData
                 RegNumber = "KR91392",
                 FuelConsumption = 12.3m,
                 IsAvailable = true,
-                CarAddressId = CarAddressesSeed.Krakow
+                CarAddressId = CarAddressesSeed.Krakow,
+                PriceCategoryId = 1
             };
             cars.Add(car6);
 

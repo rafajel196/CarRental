@@ -16,6 +16,16 @@ namespace CarRental.Application.Middleware
             {
                 await next.Invoke(context);
             }
+            catch (CannotRentThePremiumCarException cannotRentThePremiumCarException)
+            {
+                context.Response.StatusCode = 403;
+                await context.Response.WriteAsync(cannotRentThePremiumCarException.Message);
+            }
+            catch (InvalidEmailOrPasswordException invalidEmailOrPasswordException)
+            {
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsync(invalidEmailOrPasswordException.Message);
+            }
             catch (UserNotFoundException userNotFoundException)
             {
                 context.Response.StatusCode = 404;

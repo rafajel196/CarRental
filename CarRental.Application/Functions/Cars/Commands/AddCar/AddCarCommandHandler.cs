@@ -27,7 +27,8 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
                 RegNumber = request.RegNumber,
                 FuelConsumption = request.FuelConsumption,
                 IsAvailable = request.IsAvailable,
-                CarAddressId = request.CarAddressId
+                CarAddressId = request.CarAddressId,
+                PriceCategoryId = request.PriceCategoryId,
             };
 
             newCar = await _carRepository.AddAsync(newCar);

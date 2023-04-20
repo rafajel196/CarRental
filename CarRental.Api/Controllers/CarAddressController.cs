@@ -13,13 +13,10 @@ namespace CarRental.Api.Controllers
 {
     [ApiController]
     [Route("api/car-address")]
-    public class CarAddressController : ControllerBase
+    public class CarAddressController : CarRentalBaseController
     {
-        private readonly IMediator _mediator;
-
-        public CarAddressController(IMediator mediator)
+        public CarAddressController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
 
         [HttpGet]

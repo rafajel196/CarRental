@@ -10,13 +10,10 @@ namespace CarRental.Api.Controllers
     [ApiController]
     [Route("api/rental")]
     [Authorize]
-    public class RentalsController : ControllerBase
+    public class RentalsController : CarRentalBaseController
     {
-        private readonly IMediator _mediator;
-
-        public RentalsController(IMediator mediator)
+        public RentalsController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
 
         [HttpPost("rent")]

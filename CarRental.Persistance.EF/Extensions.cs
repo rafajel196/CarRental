@@ -1,8 +1,10 @@
 ﻿using CarRental.Application.Authentication;
 using CarRental.Application.Authorization;
 using CarRental.Application.Contracts.Persistance;
+using CarRental.Application.Middleware;
 using CarRental.Domain.Entities;
 using CarRental.Persistance.EF.Repositories;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,11 +25,14 @@ namespace CarRental.Persistance.EF
         public static IServiceCollection AddPersistance(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
-            services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+            services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
+            services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IUserRepository, UserRepository>();

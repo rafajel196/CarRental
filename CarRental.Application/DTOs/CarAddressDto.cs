@@ -1,6 +1,6 @@
 ﻿namespace CarRental.Application.DTOs
 {
-    public class CarAddressDto
+    public record CarAddressDto
     {
         public string City { get; set; }
         public string Street { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace CarRental.Application.DTOs
 {
-    public class UserDto
+    public record UserDto
     {
         public string FullName { get; set; }
         public string Email { get; set; }

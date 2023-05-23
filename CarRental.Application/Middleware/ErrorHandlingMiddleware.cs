@@ -1,14 +1,6 @@
 ﻿using CarRental.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
-<<<<<<< HEAD
-=======
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
->>>>>>> 7a21f03f842987523741d8f1ce804002f92d64c0
+
 
 namespace CarRental.Application.Middleware
 {

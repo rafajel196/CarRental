@@ -11,13 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-<<<<<<< HEAD
-=======
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
->>>>>>> 7a21f03f842987523741d8f1ce804002f92d64c0
+
 using System.Text;
 
 namespace CarRental.Persistance.EF

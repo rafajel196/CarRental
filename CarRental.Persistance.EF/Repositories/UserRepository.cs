@@ -1,13 +1,7 @@
 ﻿using CarRental.Application.Contracts.Persistance;
-using CarRental.Application.DTOs;
 using CarRental.Application.Exceptions;
 using CarRental.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRental.Persistance.EF.Repositories
 {

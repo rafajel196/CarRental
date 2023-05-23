@@ -2,11 +2,6 @@
 using CarRental.Application.Exceptions;
 using CarRental.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.Rentals.Command.RentCar
 {

@@ -1,12 +1,5 @@
 ﻿using CarRental.Application.Contracts.Persistance;
-using CarRental.Application.Exceptions;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.Users.Commands.RegisterUser
 {

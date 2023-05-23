@@ -1,11 +1,6 @@
 ﻿using CarRental.Application.Contracts.Persistance;
 using CarRental.Application.Exceptions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.Rentals.Query.Calculator
 {
@@ -36,7 +31,7 @@ namespace CarRental.Application.Functions.Rentals.Query.Calculator
             }
 
             var numbersOfCars = (await _carRepository.GetAllSelectedCars(car.Mark, car.Model)).Count();
-            if (numbersOfCars < 3) 
+            if (numbersOfCars < 3)
             {
                 numbersOfCarsMultipier = 1.15m;
             }
@@ -46,11 +41,11 @@ namespace CarRental.Application.Functions.Rentals.Query.Calculator
             var user = await _userRepository.GetByIdAsync(_rentalRepository.GetUserId());
 
             var licenceHavingTime = DateTime.Now - user.LicenceDate;
-            if(licenceHavingTime.TotalDays < 365*5)
+            if (licenceHavingTime.TotalDays < 365 * 5)
             {
                 licenceHavingTimeMultiplier = 1.2m;
             }
-            if (licenceHavingTime.TotalDays < 365*3 && car.PriceCategoryId == 4)
+            if (licenceHavingTime.TotalDays < 365 * 3 && car.PriceCategoryId == 4)
             {
                 throw new CannotRentThePremiumCarException();
             }

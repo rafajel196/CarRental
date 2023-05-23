@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarRental.Domain.Entities
+﻿namespace CarRental.Domain.Entities
 {
     public class CarAddress
     {
@@ -12,6 +6,6 @@ namespace CarRental.Domain.Entities
         public string City { get; set; }
         public string Street { get; set; }
 
-        public List<Car> Cars { get; set; } = new List<Car>(); 
+        public List<Car> Cars { get; set; } = new List<Car>();
     }
 }

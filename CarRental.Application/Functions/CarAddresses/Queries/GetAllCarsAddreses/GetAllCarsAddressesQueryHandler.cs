@@ -2,17 +2,16 @@
 using CarRental.Application.DTOs;
 using CarRental.Application.Exceptions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.CarAddresses.Queries.GetAllCarsAddreses
 {
     public class GetAllCarsAddressesQueryHandler : IRequestHandler<GetAllCarsAddressesQuery, List<CarAddressDto>>
     {
         private readonly ICarAddressRepository _carAddressRepository;
+
+        public GetAllCarsAddressesQueryHandler()
+        {
+        }
 
         public GetAllCarsAddressesQueryHandler(ICarAddressRepository carAddressRepository)
         {

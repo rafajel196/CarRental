@@ -1,8 +1,5 @@
-﻿using CarRental.Domain.Entities;
-using CarRental.Persistance.EF;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
 using MediatR;
 using CarRental.Application.Functions.Cars.Queries.GetAllCars;
 using CarRental.Application.Functions.Cars.Queries.GetCarById;

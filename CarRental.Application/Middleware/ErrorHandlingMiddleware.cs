@@ -1,6 +1,6 @@
 ﻿using CarRental.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
-
+using System.Net;
 
 namespace CarRental.Application.Middleware
 {
